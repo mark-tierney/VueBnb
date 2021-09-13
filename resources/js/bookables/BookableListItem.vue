@@ -1,7 +1,11 @@
 <template>
-    <div>
-        <h1>{{ title }}</h1>
-        <p>{{ content }}</p>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{ content }}</p>
+            <p>${{ price }}</p>
+        </div>
+
     </div>
 </template>
 
@@ -14,7 +18,7 @@ export default {
         price: Number
     },
     created(){ //use created lifecycle hook to ensure data from server is available asap
-        console.log('list item created');
+        //console.log('list item created');
     },
 }
 </script>
