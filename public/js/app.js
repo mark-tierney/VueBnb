@@ -2084,12 +2084,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       from: null,
       to: null
     };
+  },
+  methods: {
+    check: function check() {
+      alert('I will check something now.');
+    }
   }
 });
 
@@ -38614,6 +38633,15 @@ var render = function() {
           attrs: { type: "text", name: "from", placeholder: "Start date" },
           domProps: { value: _vm.from },
           on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.check.apply(null, arguments)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -38640,6 +38668,15 @@ var render = function() {
           attrs: { type: "text", name: "to", placeholder: "End date" },
           domProps: { value: _vm.to },
           on: {
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.check.apply(null, arguments)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return
@@ -38651,9 +38688,11 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("button", { staticClass: "btn btn-primary btn-block" }, [
-      _vm._v("Check")
-    ])
+    _c(
+      "button",
+      { staticClass: "btn btn-primary btn-block", on: { click: _vm.check } },
+      [_vm._v("Check")]
+    )
   ])
 }
 var staticRenderFns = []
