@@ -11,10 +11,10 @@
                     <div v-else>Loading...</div>
                 </div>
             </div>
-            <review-list :bookable-id="this.$route.params.id.toString()"></review-list>
+            <review-list :bookable-id="this.$route.params.id"></review-list>
         </div>
         <div class="col-md-4 pb-4">
-            <availability :bookable-id="this.$route.params.id.toString()"></availability>
+            <availability :bookable-id="this.$route.params.id" @availability="checkPrice($event)"></availability>
         </div>
     </div>
 </template>
@@ -39,6 +39,11 @@ export default {
             this.bookable = response.data.data;
             this.loading = false;
         });
+    },
+    methods: {
+        checkPrice(hasAvailability){
+            console.log(hasAvailability);
+        }
     }
 }
 </script>
