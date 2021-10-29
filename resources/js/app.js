@@ -9,6 +9,7 @@ import Success from "./shared/components/Success";
 import ValidationErrors from "./shared/components/ValidationErrors";
 import StarRating from "./shared/components/StarRating";
 import storeDefinition from "./store";
+import axios from "axios";
 
 window.Vue = require("vue").default;
 
@@ -23,6 +24,17 @@ Vue.component("star-rating", StarRating);
 
 const store = new Vuex.Store(storeDefinition);
 
+window.axios.interceptors.response.use(
+    response => { return response},
+    error => {
+        if(401 === error.response.status){
+            store.dispatch("logout");
+        }
+
+        return Promise.reject(error);
+    }
+);
+
 const app = new Vue({
     el: "#app",
     router,
@@ -30,7 +42,15 @@ const app = new Vue({
     components: {
         index: Index
     },
-    beforeCreate(){
+    async beforeCreate(){
         this.$store.dispatch("loadStoredState");
+        this.$store.dispatch("loadUser");
+        // await axios.get('sanctum/csrf-cookie');
+        // await axios.post("/login", {
+        //     email: 'agislason@example.net',
+        //     password: 'password'
+        // });
+
+        //await axios.get('/user');
     }
 });

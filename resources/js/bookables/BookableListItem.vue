@@ -1,11 +1,14 @@
 <template>
-    <div class="card w-100">
+    <div class="card w-100 minHeight">
         <div class="card-body">
-            <router-link :to="{ name: 'bookable', params: { id } }">
-                <h5 class="card-title">{{ title }}</h5>
-            </router-link>
+            <div class="d-flex justify-content-between">
+                <router-link :to="{ name: 'bookable', params: { id } }">
+                    <h5 class="card-title">{{ title }}</h5>
+                </router-link>
+                <p>${{ price }}</p>
+            </div>
             <p class="card-text">{{ description }}</p>
-            <!-- <p>${{ price }}</p> -->
+
         </div>
 
     </div>
@@ -17,7 +20,8 @@ export default {
     props: { //use prop object to obtain correct data type
         title: String,
         description: String,
-        id: Number
+        id: Number,
+        price: Number
     },
     created(){ //use created lifecycle hook to ensure data from server is available asap
         //console.log('list item created');
