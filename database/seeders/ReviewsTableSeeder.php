@@ -15,8 +15,15 @@ class ReviewsTableSeeder extends Seeder
     public function run()
     {
         Bookable::all()->each(function (Bookable $bookable){
-            $reviews = Review::factory(random_int(5, 30))->make();
+            $users = \App\Models\User::all();
+            $reviews = Review::factory(random_int(5, 30))->make()->each(function($review) use ($users, $bookable) {
+                $review->user_id = $users->random()->id;
+                $review->bookable_id = $bookable->id;
+                //$review->booking_id = $bookable->bookings()->random()->id;
+                $review->save();
+            });
             $bookable->reviews()->saveMany($reviews);
+            //$booking->reviews()->saveMany($reviews);
         });
     }
 }

@@ -64634,7 +64634,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "row pt-4" }, [
                   _c("div", { staticClass: "col-md-6" }, [
-                    _vm._v("Gordon Deal")
+                    _vm._v(_vm._s(review.user_id))
                   ]),
                   _vm._v(" "),
                   _c(

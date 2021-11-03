@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'content', 'rating'];
+    protected $fillable = ['id', 'content', 'rating', 'user_id'];
 
     public function bookable()
     {
@@ -29,5 +29,10 @@ class Review extends Model
     public function getKeyType()
     {
         return 'string';
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

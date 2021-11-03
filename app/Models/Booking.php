@@ -10,7 +10,12 @@ use Illuminate\Support\Str;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['from', 'to'];
+    protected $fillable = ['from', 'to', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
     public function bookable()
     {

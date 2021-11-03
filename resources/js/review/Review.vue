@@ -58,7 +58,7 @@ export default {
             review:{
                 id: null,
                 rating: 5,
-                content: null
+                content: null,
             },
             existingReview: null,
             loading: false,

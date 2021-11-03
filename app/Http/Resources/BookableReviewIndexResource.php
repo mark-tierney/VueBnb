@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookableReviewIndexResource extends JsonResource
@@ -17,7 +18,8 @@ class BookableReviewIndexResource extends JsonResource
         return [
           'created_at' => $this->created_at,
           'rating' => $this->rating,
-          'content' => $this->content
+          'content' => $this->content,
+          'user_id' => User::findOrFail($this->user_id)->name,
         ];
     }
 }
